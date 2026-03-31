@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Library_Management_System": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7192",
+      "launchBrowser": false
+    }
+  }
+}
