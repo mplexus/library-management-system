@@ -1,0 +1,245 @@
+{
+  "info": {
+    "_postman_id": "ad6adfde-fbf2-4c24-8185-61f3ca1f079b",
+    "name": "Library",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "29268564",
+    "_collection_link": "https://go.postman.co/collection/29268564-ad6adfde-fbf2-4c24-8185-61f3ca1f079b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "GetBooks",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:7192/api/books",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7192",
+          "path": [
+            "api",
+            "books"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetBooksByGenre",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:7192/api/books/genre/:genre",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7192",
+          "path": [
+            "api",
+            "books",
+            "genre",
+            ":genre"
+          ],
+          "variable": [
+            {
+              "key": "genre",
+              "value": "SciFi"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetBooksByTitle",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:7192/api/books/title/:title",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7192",
+          "path": [
+            "api",
+            "books",
+            "title",
+            ":title"
+          ],
+          "variable": [
+            {
+              "key": "title",
+              "value": "bird"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetBooksOfGenreWithCount",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:7192/api/books/genre/:genre/count",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7192",
+          "path": [
+            "api",
+            "books",
+            "genre",
+            ":genre",
+            "count"
+          ],
+          "variable": [
+            {
+              "key": "genre",
+              "value": "SciFi"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetBooksByGenreWithCount",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:7192/api/books/count",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7192",
+          "path": [
+            "api",
+            "books",
+            "count"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetBooksTotalValue",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:7192/api/books/totalvalue",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7192",
+          "path": [
+            "api",
+            "books",
+            "totalvalue"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetAllBooksByGenre",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:7192/api/books/genre",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7192",
+          "path": [
+            "api",
+            "books",
+            "genre"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add book",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"The space bird\",\r\n    \"genre\": \"SciFi\",\r\n    \"stock\": 3,\r\n    \"cost\": 6\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:7192/api/books",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7192",
+          "path": [
+            "api",
+            "books"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Remove book",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"The space bird\",\r\n    \"genre\": \"SciFi\",\r\n    \"stock\": 3,\r\n    \"cost\": 6\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:7192/api/books/title/:title",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "7192",
+          "path": [
+            "api",
+            "books",
+            "title",
+            ":title"
+          ],
+          "variable": [
+            {
+              "key": "title",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
