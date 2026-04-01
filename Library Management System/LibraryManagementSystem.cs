@@ -59,20 +59,13 @@ public class LibraryManagementSystem
     [Function("GetAllBooksByGenre")]
     public async Task<IActionResult> GetAllBooksByGenre([HttpTrigger(AuthorizationLevel.Function, "get", Route = "books/genre")] HttpRequest req)
     {
-        var result = _library.GetAllBooksByGenre();
-        return new OkObjectResult(result);
+        return new OkObjectResult(_library.GetAllBooksByGenre());
     }
 
     [Function("AddBook")]
     public async Task<IActionResult> AddBook([HttpTrigger(AuthorizationLevel.Function, "post", Route = "books")] HttpRequest req)
     {
-        var serializerOptions = new JsonSerializerOptions
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            PropertyNameCaseInsensitive = true
-        };
-        var book = await JsonSerializer.DeserializeAsync<Book>(req.Body, serializerOptions);
+        var book = await JsonSerializer.DeserializeAsync<Book>(req.Body);
         bool result = false;
 
         if (book != null)
