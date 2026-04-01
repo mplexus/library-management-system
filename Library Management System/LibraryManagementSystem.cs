@@ -75,4 +75,22 @@ public class LibraryManagementSystem
 
         return new OkObjectResult(result ? "book added" : "failed to add book");
     }
+
+    [Function("RemoveBook")]
+    public async Task<IActionResult> RemoveBook([HttpTrigger(AuthorizationLevel.Function, "delete", Route = "books/title/{title}")] HttpRequest req, string title)
+    {
+        bool result = false;
+        var books = _library.GetBooksByTitle(title);
+        if (books != null)
+        {
+            var book = books.FirstOrDefault() as Book;
+
+            if (book != null)
+            {
+                result = _library.RemoveBook(book);
+            }
+        }
+
+        return new OkObjectResult(result ? "book removed" : "failed to remove book");
+    }
 }
