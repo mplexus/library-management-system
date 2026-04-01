@@ -17,5 +17,9 @@ namespace Library_Management_System.Services
         public IEnumerable<IEnumerable<GenreCount>> GetBooksByGenreWithCount();
 
         public IEnumerable<BookByGenre> GetAllBooksByGenre();
+
+        public bool AddBook(Book book);
+
+        public bool RemoveBook(Book book);
     }
 }

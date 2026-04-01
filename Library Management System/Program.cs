@@ -1,4 +1,3 @@
-using Library_Management_System.Models;
 using Library_Management_System.Services;
 using Microsoft.Azure.Functions.Worker.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,8 +9,7 @@ builder.ConfigureFunctionsWebApplication();
 
 builder.Services
     .AddApplicationInsightsTelemetryWorkerService()
-    //.ConfigureFunctionsApplicationInsights()
-    .AddTransient<ILibrary, Library>()
+    .AddSingleton<ILibrary, Library>()
     ;
 
 builder.Build().Run();

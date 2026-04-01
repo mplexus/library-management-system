@@ -1,5 +1,4 @@
 ﻿using Library_Management_System.Models;
-using System.Linq;
 
 namespace Library_Management_System.Services
 {
@@ -11,6 +10,27 @@ namespace Library_Management_System.Services
         {
             _books = new();
             loadFixtured();
+        }
+
+        public bool AddBook(Book book)
+        {
+            _books.Add(book);
+
+            return true;
+        }
+
+        public bool RemoveBook(Book book)
+        {
+            try
+            {
+                _books.Remove(book);
+                return true;
+            } catch (Exception e)
+            {
+
+            }
+
+            return false;
         }
 
         public IEnumerable<IBook> GetAllBooks()
@@ -55,10 +75,12 @@ namespace Library_Management_System.Services
 
         public IEnumerable<BookByGenre> GetAllBooksByGenre()
         {
-            return _books
+            var b = _books
                 .GroupBy(book => book.Genre, (key, bookList) => new BookByGenre(key, bookList))
                 .ToList()
                 ;
+
+            return b;
         }
 
         private void loadFixtured()
@@ -68,7 +90,6 @@ namespace Library_Management_System.Services
             _books.Add(new Book("1984", "Dystopian", 3, 12));
             _books.Add(new Book("Moby Dick", "Classic", 5, 15));
             _books.Add(new Book("The Time Machine", "SciFi", 2, 10));
-            _books.Add(new Book("10000 yards below the sea", "SciFi", 4, 8));
         }
     }
 }

@@ -1,8 +1,11 @@
+using Library_Management_System.Models;
 using Library_Management_System.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Library_Management_System;
 
@@ -56,6 +59,27 @@ public class LibraryManagementSystem
     [Function("GetAllBooksByGenre")]
     public async Task<IActionResult> GetAllBooksByGenre([HttpTrigger(AuthorizationLevel.Function, "get", Route = "books/genre")] HttpRequest req)
     {
-        return new OkObjectResult(_library.GetAllBooksByGenre());
+        var result = _library.GetAllBooksByGenre();
+        return new OkObjectResult(result);
+    }
+
+    [Function("AddBook")]
+    public async Task<IActionResult> AddBook([HttpTrigger(AuthorizationLevel.Function, "post", Route = "books")] HttpRequest req)
+    {
+        var serializerOptions = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNameCaseInsensitive = true
+        };
+        var book = await JsonSerializer.DeserializeAsync<Book>(req.Body, serializerOptions);
+        bool result = false;
+
+        if (book != null)
+        {
+            result = _library.AddBook(book);
+        }
+
+        return new OkObjectResult(result ? "book added" : "failed to add book");
     }
 }
